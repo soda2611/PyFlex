@@ -190,6 +190,67 @@ def __active__(startup_command=False, auto_tab=True):
 					if inp.replace(" ","").lower()=="^z": inp="exit()"
 					__run__(inp)
 		except: traceback.print_exc()
+
+def __help__():
+    help_text = """
+PyFlex Help - Version: 1.1.1dev
+
+Commands:
+    cmd(*args, **kwargs)              : Run system commands.
+    run(file_path)                    : Run a Python script from a file.
+    install(lib)                      : Install a Python library using pip.
+    uninstall(lib)                    : Uninstall a Python library using pip.
+    upgrade(lib)                      : Upgrade a Python library using pip.
+    cls()                             : Clear the console screen.
+    logs()                            : Show the command history.
+    exit()                            : Exit PyFlex.
+    log(index=-1)                     : Re-run a specific command from history.
+    create_customized_command()       : Create a custom command.
+    __multi_line__(end_signal, export_to_file) : Enter multi-line mode.
+    __del__(command)                  : Delete a custom command.
+    __restore_default_elements__()    : Restore default elements of PyFlex.
+    __active__(startup_command, auto_tab) : Activate PyFlex.
+
+Usage Examples:
+    - To run a system command:
+        cmd("ls" if __platform__ != "Windows" else "dir")
+    
+    - To run a Python script:
+        run("path/to/script.py")
+
+    - To install a library:
+        install("requests")
+    
+    - To clear the screen:
+        cls()
+    
+    - To see command history:
+        logs()
+    
+    - To exit PyFlex:
+        exit()
+    
+    - To re-run a command from history:
+        log(2)  # Re-run the third command in history
+
+    - To create a custom command:
+        create_customized_command()
+    
+    - To enter multi-line mode:
+        __multi_line__()
+
+    - To delete a custom command:
+        __del__("my_custom_command")
+    
+    - To restore default elements:
+        __restore_default_elements__()
+    
+    - To activate PyFlex:
+        __active__()
+
+For more detailed information, please refer to the documentation or source code.
+    """
+    print(help_text)
 			
 if __name__=="__main__":
 	__active__()
