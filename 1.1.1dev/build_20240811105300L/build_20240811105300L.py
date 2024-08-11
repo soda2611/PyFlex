@@ -7,7 +7,7 @@ except: pass
 
 # Metadata
 __version__ = "1.1.1dev"
-__build__ = "2024081105300L"
+__build__ = "20240811105300L"
 __platform__ = platform.system()
 python_version, python_build = platform.python_version(), platform.python_build()
 
@@ -219,7 +219,7 @@ def __del__(command):
 # Restore default elements of PyFlex
 def __restore_default_elements__():
     try:
-        with open("build_2024081105300L.py", encoding="utf-8") as f:
+        with open("build_20240811105300L.py", encoding="utf-8") as f:
             __run__(f.read()[:-1] + "'cls()')")
     except FileNotFoundError:
         print("Error: Default build file not found.")
