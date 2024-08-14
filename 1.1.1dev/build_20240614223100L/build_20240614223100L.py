@@ -28,7 +28,7 @@ def upgrade(lib): install(f"--upgrade {lib}")
 
 def cls(): cmd("cls") if __platform__=="Windows" else cmd("clear")
 		
-def logs(): return "No commands in history" if len(__history__)==0 else "\n".join(f"{i}: {__history__[i]}" for i in range(len(__history__)))
+def logs(): return "No commands in history" if __history__==[] else "\n".join(f"{i}: {k}" for i,k in enumerate(__history__))
 
 def exit():
 	global __activated__
