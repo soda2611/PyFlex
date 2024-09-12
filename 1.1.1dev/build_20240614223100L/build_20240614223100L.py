@@ -28,7 +28,7 @@ def upgrade(lib): install(f"--upgrade {lib}")
 
 def cls(): cmd("cls") if __platform__=="Windows" else cmd("clear")
 		
-def logs(): return "No commands in history" if __history__==[] else "\n".join(f"{i}: {k}" for i,k in enumerate(__history__))
+def logs(): return "No commands in history" if len(__history__)==0 else "\n".join(f"{i}: {__history__[i]}" for i in range(len(__history__)))
 
 def exit():
 	global __activated__
@@ -93,9 +93,10 @@ def __run__(inp, add_to_history=True, display=True):
 	else: exec(inp, global_var)
 	if add_to_history:  __history__.append(inp)
 	
-def create_customized_command(end_signal="main.run()"):
+def __3c__(end_signal="main.run()", auto_tab=True):
 	global __new_line__, __nnum__, ERASE_LINE
 	__new_line__=True
+	overwrite=False
 	line=1
 	print(f"Run command: {end_signal}")
 	command_name, args=[input("Command name: "), input("Arguments for command (split by \",\"; if no leave this blank): ").replace(" ","").split(",")]
@@ -191,7 +192,7 @@ def __active__(startup_command=False, auto_tab=True):
 					__run__(inp)
 		except: traceback.print_exc()
 
-def __help__(): return "PyFlex Help - Version: 1.1.1dev\nCommands:\n    cmd(*args, **kwargs)              : Run system commands.\n    run(file_path)                    : Run a Python script from a file.\n    install(lib)                      : Install a Python library using pip.\n    uninstall(lib)                    : Uninstall a Python library using pip.\n    upgrade(lib)                      : Upgrade a Python library using pip.\n    cls()                             : Clear the console screen.\n    logs()                            : Show the command history.\n    exit()                            : Exit PyFlex.\n    log(index=-1)                     : Re-run a specific command from history.\n    create_customized_command()       : Create a custom command.\n    __multi_line__(end_signal, export_to_file) : Enter multi-line mode.\n    __del__(command)                  : Delete a custom command.\n    __restore_default_elements__()    : Restore default elements of PyFlex.\n    __active__(startup_command, auto_tab) : Activate PyFlex.\nUsage Examples:\n    - To run a system command:\n        cmd('ls' if __platform__ != 'Windows' else 'dir')\n    - To run a Python script:\n        run('path\to\script.py')\n    - To install a library:\n        install('requests')\n    - To clear the screen:\n        cls()\n    - To see command history:\n        logs()\n    - To exit PyFlex:\n        exit()\n    - To re-run a command from history:\n        log(2)  # Re-run the third command in history\n    - To create a custom command:\n        create_customized_command()\n    - To enter multi-line mode:\n        __multi_line__()\n    - To delete a custom command:\n        __del__('my_custom_command')\n    - To restore default elements:\n        __restore_default_elements__()\n    - To activate PyFlex:\n        __active__()\nFor more detailed information, please refer to the documentation or source code.\n"
+def __help__(): return "PyFlex Help - Version: 1.1.1dev\nCommands:\n    cmd(*args, **kwargs)              : Run system commands.\n    run(file_path)                    : Run a Python script from a file.\n    install(lib)                      : Install a Python library using pip.\n    uninstall(lib)                    : Uninstall a Python library using pip.\n    upgrade(lib)                      : Upgrade a Python library using pip.\n    cls()                             : Clear the console screen.\n    logs()                            : Show the command history.\n    exit()                            : Exit PyFlex.\n    log(index=-1)                     : Re-run a specific command from history.\n    create_customized_command()       : Create a custom command.\n    __multi_line__(end_signal, export_to_file) : Enter multi-line mode.\n    __del__(command)                  : Delete a custom command.\n    __restore_default_elements__()    : Restore default elements of PyFlex.\n    __active__(startup_command, auto_tab) : Activate PyFlex.\nUsage Examples:\n    - To run a system command:\n        cmd('ls' if __platform__ != 'Windows' else 'dir')\n    - To run a Python script:\n        run('path\\to\\script.py')\n    - To install a library:\n        install('requests')\n    - To clear the screen:\n        cls()\n    - To see command history:\n        logs()\n    - To exit PyFlex:\n        exit()\n    - To re-run a command from history:\n        log(2)  # Re-run the third command in history\n    - To create a custom command:\n        create_customized_command()\n    - To enter multi-line mode:\n        __multi_line__()\n    - To delete a custom command:\n        __del__('my_custom_command')\n    - To restore default elements:\n        __restore_default_elements__()\n    - To activate PyFlex:\n        __active__()\nFor more detailed information, please refer to the documentation or source code.\n"
 			
 if __name__=="__main__":
 	__active__()
