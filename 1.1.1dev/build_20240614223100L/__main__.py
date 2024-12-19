@@ -1,7 +1,7 @@
 import subprocess
 from build_20240614223100L import __active__
 
-with open("build_20240612132530L.py", encoding="utf-8") as f: startup=f.read()
+with open("build_20240614223100L.py", encoding="utf-8") as f: startup=f.read()
 
 if input("Enable customized shell (y/n): ").replace(" ", "").lower=="y": customized_shell=True
 else: customized_shell=False
